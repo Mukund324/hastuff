@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="334dp"
+        android:layout_weight="1"
+        android:background="@color/teal_700"
+        android:ems="10"
+        android:gravity="right|center"
+        android:inputType="textPersonName"
+        android:text="0"
+        android:textSize="20pt" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttoAC"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="AC"
+                app:backgroundTint="#D83E3E"
+                android:onClick="acEvent" />
+
+            <Button
+                android:id="@+id/buttopandm"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:onClick="numberEvent"
+                android:text="+/-"
+                app:backgroundTint="#9C27B0" />
+
+            <Button
+                android:id="@+id/buttodiv"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:onClick="numberEvent"
+                android:text="/"
+                app:backgroundTint="#9C27B0" />
+
+            <Button
+                android:id="@+id/buttomul"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:onClick="operatorEvent"
+                android:text="*"
+                app:backgroundTint="#9C27B0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttoseven"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="7"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttoeight"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="8"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttonine"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="9"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttoper"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:onClick="percentEvent"
+                android:text="%"
+                app:backgroundTint="#9C27B0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttofour"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="4"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttofive"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="5"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttosix"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="6"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttoplus"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:onClick="operatorEvent"
+                android:text="+"
+                app:backgroundTint="#9C27B0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttoone"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="1"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttotwo"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="2"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttothree"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="3"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttominus"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:onClick="operatorEvent"
+                android:text="-"
+                app:backgroundTint="#9C27B0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttozero"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="0"
+                android:layout_marginRight="1pt"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttodot"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="."
+                android:layout_marginRight="1pt"
+                android:onClick="numberEvent" />
+
+            <Button
+                android:id="@+id/buttoequal"
+                android:layout_width="30pt"
+                android:layout_height="30pt"
+                android:layout_weight="1"
+                android:text="="
+                android:layout_marginRight="1pt"
+                android:onClick="equalEvent" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
+//
+package com.example.calci;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity {
+    boolean isNewOp = true;
+    String oldNumber,op;
+    EditText ed1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ed1 = findViewById(R.id.editText);
+
+    }
+    public void numberEvent(View view)
+    {
+        if(isNewOp)
+            ed1.setText("");
+        isNewOp = false ;
+        String number = ed1.getText().toString();
+        switch (view.getId())
+        {
+            case R.id.buttoone:
+                number += "1";
+                break;
+            case R.id.buttotwo:
+                number += "2";
+                break;
+            case R.id.buttothree:
+                number += "3";
+                break;
+            case R.id.buttofour:
+                number += "4";
+                break;
+            case R.id.buttofive:
+                number += "5";
+                break;
+            case R.id.buttosix:
+                number += "6";
+                break;
+            case R.id.buttoseven:
+                number += "7";
+                break;
+            case R.id.buttoeight:
+                number += "8";
+                break;
+            case R.id.buttonine:
+                number += "9";
+                break;
+            case R.id.buttozero:
+                number += "0";
+                break;
+            case R.id.buttodot:
+                number += ".";
+                break;
+            case R.id.buttopandm:
+                number = "-"+number;
+                break;
+        }
+        ed1.setText(number);
+    }
+    public void operatorEvent(View view)
+    {
+        isNewOp = true;
+        oldNumber = ed1.getText().toString();
+        switch (view.getId())
+        {
+            case R.id.buttodiv: op = "/"; break;
+            case R.id.buttomul: op = "*"; break;
+            case R.id.buttoplus: op = "+"; break;
+            case R.id.buttominus: op = "-"; break;
+        }
+    }
+    public void equalEvent(View view) {
+        String newnumber = ed1.getText().toString();
+        double result =0.0;
+        switch(op)
+        {
+            case "+":
+                result = Double.parseDouble(oldNumber) + Double.parseDouble(newnumber);
+                break;
+            case "-":
+                result = Double.parseDouble(oldNumber) - Double.parseDouble(newnumber);
+                break;
+            case "*":
+                result = Double.parseDouble(oldNumber) * Double.parseDouble(newnumber);
+                break;
+            case "/":
+                result = Double.parseDouble(oldNumber) / Double.parseDouble(newnumber);
+                break;
+        }
+        ed1.setText(result+"");
+    }
+    public void acEvent(View view)
+    {
+        ed1.setText("0");
+        isNewOp = true;
+    }
+    public void percentEvent(View view)
+    {
+        double no =Double.parseDouble(ed1.getText().toString())/100;
+        ed1.setText(no+"");
+        isNewOp = true;
+    }
+}

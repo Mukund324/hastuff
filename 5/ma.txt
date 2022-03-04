@@ -1,0 +1,214 @@
+package com.example.sqllite;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity
+{
+    EditText name,contact,age;
+    Button insert,update,delete,view;
+    DBhelper DB;
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        name=findViewById(R.id.name);
+        contact=findViewById(R.id.contact);
+        age=findViewById(R.id.age);
+
+        insert=findViewById(R.id.bttnInsert);
+        update=findViewById(R.id.bttnUpdate);
+        delete=findViewById(R.id.bttnDelete);
+        view=findViewById(R.id.bttnView);
+
+        DB= new DBhelper(this);
+        insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameTXT=name.getText().toString();
+                String contactTXT=contact.getText().toString();
+                String ageTXT=age.getText().toString();
+                name.getText().clear();
+                contact.getText().clear();
+                age.getText().clear();
+                boolean qryStatus=DB.insertData(nameTXT,contactTXT,ageTXT);
+                if(qryStatus==true)
+                    Toast.makeText(MainActivity.this,"New Record Created",Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(MainActivity.this,"New record Creation failed",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameTXT=name.getText().toString();
+                String contactTXT=contact.getText().toString();
+                String ageTXT=age.getText().toString();
+                name.getText().clear();
+                contact.getText().clear();
+                age.getText().clear();
+                boolean qryStatus=DB.updateData(nameTXT,contactTXT,ageTXT);
+                if(qryStatus==true)
+                    Toast.makeText(MainActivity.this," Record updated",Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(MainActivity.this," record updation failed",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameTXT=name.getText().toString();
+                name.getText().clear();
+                boolean qryStatus=DB.deleteData(nameTXT);
+                if(qryStatus==true)
+                    Toast.makeText(MainActivity.this,"Record Deleted",Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(MainActivity.this," record Deletion failed",Toast.LENGTH_SHORT).show();
+            }
+        });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor res=DB.viewData();
+                if(res.getCount()==0)
+                    Toast.makeText(MainActivity.this,"No Record Exist",Toast.LENGTH_SHORT).show();
+                else{
+                    StringBuffer buffer=new StringBuffer();
+                    while (res.moveToNext()){
+                        buffer.append("Name:"+res.getString(0)+"\n");
+                        buffer.append("Contact:"+res.getString(1)+"\n");
+                        buffer.append("Age:"+res.getString(2)+"\n");
+                    }
+                    AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("User Data");
+                    builder.setMessage(buffer.toString());
+                    builder.show();
+                }
+            }
+        });
+    }
+}
+///
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B2DCE1"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Textv1"
+        android:layout_width="330dp"
+        android:layout_height="63dp"
+        android:text="ENTER DETAILS BELOW"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.012"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="402dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.124" />
+
+    <EditText
+        android:id="@+id/contact"
+        android:layout_width="402dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Contact No"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.206" />
+
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="402dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Age"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276" />
+
+    <Button
+        android:id="@+id/bttnInsert"
+        android:layout_width="397dp"
+        android:layout_height="63dp"
+        android:text="INSERT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.431" />
+
+    <Button
+        android:id="@+id/bttnUpdate"
+        android:layout_width="397dp"
+        android:layout_height="63dp"
+        android:text="UPDATE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.592" />
+
+    <Button
+        android:id="@+id/bttnDelete"
+        android:layout_width="397dp"
+        android:layout_height="63dp"
+        android:text="DELETE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.739" />
+
+    <Button
+        android:id="@+id/bttnView"
+        android:layout_width="397dp"
+        android:layout_height="63dp"
+        android:text="VIEW"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.883" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
